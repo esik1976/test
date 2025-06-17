@@ -33,3 +33,18 @@ curl -X POST -H "Content-Type: application/json" \
 
 This will register the device under contract `123`. Attempting to add more than
 three devices results in an error.
+
+## Diagram
+
+```mermaid
+sequenceDiagram
+    participant U as User
+    participant S as Microservice
+    participant C as ContractStore
+
+    U->>S: POST /contracts/{id}/devices
+    S->>C: validate and add device
+    C-->>S: updated device list or error
+    S-->>U: response
+```
+
